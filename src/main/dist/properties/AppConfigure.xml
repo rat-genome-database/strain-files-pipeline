@@ -1,0 +1,8 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="main" class="edu.mcw.rgd.strainFiles.Manager">
+        <property name="version" value="Strain Files pipeline -- build 2020-06-30" />
+
+    </bean>
+ 
+</beans>
