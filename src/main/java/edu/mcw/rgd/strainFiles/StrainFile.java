@@ -28,6 +28,7 @@ public class StrainFile {
 
         logger.info(getVersion());
         logger.info("   "+dao.getConnection());
+        logger.info("   -- Strain File Pipeline Start --  ");
         Date date = new Date(Calendar.getInstance().getTime().getTime());
         Date lastWeek = subtractWeek(date);
 //        logger.info("https://www.google.com");
@@ -41,7 +42,7 @@ public class StrainFile {
             String webLink = strainPage+newFile.getStrainId();
             logger.info(webLink);
         }
-
+        logger.info("   -- Strain File Pipeline End --  ");
     }
 
     public List<StrainFiles> newStrainsAdded(List<StrainFiles> files, Date lastWeek)throws Exception{
