@@ -31,7 +31,6 @@ dependencies {
     compile 'org.springframework:spring-beans:5.2.3.RELEASE'
     compile 'org.springframework:spring-jdbc:5.2.3.RELEASE'
 
-	
     compile fileTree(dir: 'lib', include: '*.jar')
 }
 

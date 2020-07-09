@@ -1,8 +1,9 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-    <bean id="main" class="edu.mcw.rgd.strainFiles.Manager">
+    <bean id="strainFile" class="edu.mcw.rgd.strainFiles.StrainFile">
         <property name="version" value="Strain Files pipeline -- build 2020-06-30" />
-
+        <property name="strainPageProd" value="https://rgd.mcw.edu/rgdweb/report/strain/main.html?id="/>
+        <property name="strainPageDev" value="https://dev.rgd.mcw.edu/rgdweb/report/strain/main.html?id="/>
     </bean>
  
 </beans>
