@@ -36,11 +36,16 @@ public class StrainFile {
         files = dao.getStrainFiles();
         List<StrainFiles> newFiles = newStrainsAdded(files,lastWeek);
 
-        for (StrainFiles newFile : newFiles){
-            logger.info(newFile.getStrainId()+", Content Type: "+newFile.getContentType()+", File Name: "+newFile.getFileName()
-                    +", File Type: "+newFile.getFileType()+", Modified By: "+newFile.getModifiedBy());
-            String webLink = strainPage+newFile.getStrainId();
-            logger.info(webLink);
+        if(newFiles.size()==0)
+            logger.info("   No new files added within the last week.");
+        else {
+            for (StrainFiles newFile : newFiles) {
+                logger.info(newFile.getStrainId() + ", Content Type: " + newFile.getContentType() + ", File Name: " + newFile.getFileName()
+                        + ", File Type: " + newFile.getFileType() + ", Modified By: " + newFile.getModifiedBy());
+                String webLink = strainPage + newFile.getStrainId();
+                logger.info(webLink);
+            }
+            logger.info("   Total new files added: " + newFiles.size());
         }
         logger.info("   -- Strain File Pipeline End --  ");
     }
