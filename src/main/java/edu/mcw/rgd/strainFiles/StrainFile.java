@@ -19,19 +19,13 @@ public class StrainFile {
     protected Logger logger =Logger.getLogger("status");
 
     public void run() throws Exception{
-        String strainPage;
-        if(dao.getConnection().contains("marcus"))
-            strainPage = getStrainPageDev();
-        else
-            strainPage = getStrainPageProd();
-
+        String strainPage = getStrainPageDev();
 
         logger.info(getVersion());
         logger.info("   "+dao.getConnection());
-        logger.info("   -- Strain File Pipeline Start --  ");
+        logger.info("   -- Strain File Pipeline Start --  \n");
         Date date = new Date(Calendar.getInstance().getTime().getTime());
         Date lastWeek = subtractWeek(date);
-//        logger.info("https://www.google.com");
         List<StrainFiles> files = new ArrayList<>();
         files = dao.getStrainFiles();
         List<StrainFiles> newFiles = newStrainsAdded(files,lastWeek);
@@ -47,7 +41,7 @@ public class StrainFile {
             }
             logger.info("   Total new files added: " + newFiles.size());
         }
-        logger.info("   -- Strain File Pipeline End --  ");
+        logger.info("\n   -- Strain File Pipeline End --  ");
     }
 
     public List<StrainFiles> newStrainsAdded(List<StrainFiles> files, Date lastWeek)throws Exception{
