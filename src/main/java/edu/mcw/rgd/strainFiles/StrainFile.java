@@ -19,23 +19,28 @@ public class StrainFile {
     protected Logger logger =Logger.getLogger("status");
 
     public void run() throws Exception{
-        String strainPage = getStrainPageDev();
+        String strainPage = getStrainPageProd();
 
         logger.info(getVersion());
         logger.info("   "+dao.getConnection());
         logger.info("   -- Strain File Pipeline Start --  \n");
         Date date = new Date(Calendar.getInstance().getTime().getTime());
         Date lastWeek = subtractWeek(date);
-        List<StrainFiles> files = new ArrayList<>();
-        files = dao.getStrainFiles();
-        List<StrainFiles> newFiles = newStrainsAdded(files,lastWeek);
+        List<StrainFiles> curFiles = dao.getStrainFiles();
+        List<StrainFiles> newFiles = newStrainsAdded(curFiles,lastWeek);
 
         if(newFiles.size()==0)
             logger.info("   No new files added within the last week.");
         else {
             for (StrainFiles newFile : newFiles) {
-                logger.info(newFile.getStrainId() + ", Content Type: " + newFile.getContentType() + ", File Name: " + newFile.getFileName()
-                        + ", File Type: " + newFile.getFileType() + ", Modified By: " + newFile.getModifiedBy());
+                if(newFile.getModifiedBy() != null) {
+                    logger.info(newFile.getStrainId() + ", Content Type: " + newFile.getContentType() + ", File Name: " + newFile.getFileName()
+                            + ", File Type: " + newFile.getFileType() + ", Modified By: " + newFile.getModifiedBy());
+                }
+                else{ // modifiedBy is null
+                    logger.info(newFile.getStrainId() + ", Content Type: " + newFile.getContentType() + ", File Name: " + newFile.getFileName()
+                            + ", File Type: " + newFile.getFileType() + ", was modified/made before column was added. " );
+                }
                 String webLink = strainPage + newFile.getStrainId();
                 logger.info(webLink);
             }
