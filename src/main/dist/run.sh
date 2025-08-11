@@ -7,9 +7,9 @@ APPNAME=StrainFilesPipeline
 APPDIR=/home/rgddata/pipelines/$APPNAME
 SERVER=`hostname -s | tr '[a-z]' '[A-Z]'`
 
-EMAILLIST=llamers@mcw.edu,mtutaj@mcw.edu
+EMAILLIST="llamers@mcw.edu mtutaj@mcw.edu"
 if [ "$SERVER" == "REED" ]; then
-  EMAILLIST=llamers@mcw.edu,mtutaj@mcw.edu,jrsmith@mcw.edu,sjwang@mcw.edu
+  EMAILLIST="llamers@mcw.edu mtutaj@mcw.edu jrsmith@mcw.edu sjwang@mcw.edu"
 fi
 
 cd $APPDIR

@@ -1,6 +1,8 @@
+Aug 11, 2025
+  updated script to be compatible with new mail client
+
 7/8
 updated rgd-core and got the week check working with a link to the new/modified strain files
-
 
 6/31
 Created the Strain Files pipeline
