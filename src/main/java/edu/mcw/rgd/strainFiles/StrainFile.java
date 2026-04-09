@@ -1,7 +1,8 @@
 package edu.mcw.rgd.strainFiles;
 
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import edu.mcw.rgd.datamodel.StrainFiles;
 
 import java.sql.Date;
@@ -16,7 +17,7 @@ public class StrainFile {
     String strainPageDev;
     DAO dao = new DAO();
 
-    protected Logger logger =Logger.getLogger("status");
+    protected Logger logger = LogManager.getLogger("status");
 
     public void run() throws Exception{
         String strainPage = getStrainPageProd();

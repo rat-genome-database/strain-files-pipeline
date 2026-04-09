@@ -3,7 +3,7 @@
 # Strain Files pipeline
 #
 . /etc/profile
-APPNAME=StrainFilesPipeline
+APPNAME=strain-files-pipeline
 APPDIR=/home/rgddata/pipelines/$APPNAME
 SERVER=`hostname -s | tr '[a-z]' '[A-Z]'`
 
@@ -15,7 +15,7 @@ fi
 cd $APPDIR
 
 java -Dspring.config=$APPDIR/../properties/default_db2.xml \
-    -Dlog4j.configuration=file://$APPDIR/properties/log4j.properties \
+    -Dlog4j.configurationFile=file://$APPDIR/properties/log4j2.xml \
     -jar lib/$APPNAME.jar "$@" > run.log 2>&1
 
 mailx -s "[$SERVER] Strain Files Pipeline Run" $EMAILLIST < $APPDIR/logs/summary.log

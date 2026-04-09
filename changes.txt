@@ -1,3 +1,9 @@
+Apr 09, 2026
+  modernized build: java 17, log4j 2.x, ojdbc11, current dependency versions
+  renamed app from StrainFilesPipeline to strain-files-pipeline
+  migrated log4j.properties to log4j2.xml
+  updated README
+
 Aug 11, 2025
   updated script to be compatible with new mail client
 

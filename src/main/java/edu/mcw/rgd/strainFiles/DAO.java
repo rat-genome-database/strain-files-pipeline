@@ -1,6 +1,5 @@
 package edu.mcw.rgd.strainFiles;
 
-import edu.mcw.rgd.dao.AbstractDAO;
 import edu.mcw.rgd.dao.impl.StrainDAO;
 import edu.mcw.rgd.datamodel.StrainFiles;
 
