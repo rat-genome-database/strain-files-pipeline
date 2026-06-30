@@ -5,10 +5,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import edu.mcw.rgd.datamodel.StrainFiles;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class StrainFile {
@@ -25,8 +23,7 @@ public class StrainFile {
         logger.info(getVersion());
         logger.info("   "+dao.getConnection());
         logger.info("   -- Strain File Pipeline Start --  \n");
-        Date date = new Date(Calendar.getInstance().getTime().getTime());
-        Date lastWeek = subtractWeek(date);
+        LocalDate lastWeek = LocalDate.now().minusWeeks(1);
         List<StrainFiles> curFiles = dao.getStrainFiles();
         List<StrainFiles> newFiles = newStrainsAdded(curFiles,lastWeek);
 
@@ -50,31 +47,21 @@ public class StrainFile {
         logger.info("\n   -- Strain File Pipeline End --  ");
     }
 
-    public List<StrainFiles> newStrainsAdded(List<StrainFiles> files, Date lastWeek)throws Exception{
+    public List<StrainFiles> newStrainsAdded(List<StrainFiles> files, LocalDate lastWeek){
         List<StrainFiles> weeklyStrains = new ArrayList<>();
 
         for(StrainFiles file : files){
 
             if(file.getLastModifiedDate()==null)
                 continue;
-            Date fileDate = file.getLastModifiedDate();
 
-            LocalDate ldFileDate = fileDate.toLocalDate();
-            LocalDate ldLastWeek = lastWeek.toLocalDate();
+            LocalDate fileDate = file.getLastModifiedDate().toLocalDate();
 
-            if(ldFileDate.equals(ldLastWeek) || ldFileDate.isAfter(ldLastWeek))
+            if(!fileDate.isBefore(lastWeek))
                 weeklyStrains.add(file);
         }
 
         return weeklyStrains;
-    }
-
-    public static Date subtractWeek(Date date) {
-        int days = 7;
-        Calendar c = Calendar.getInstance();
-        c.setTime(date);
-        c.add(Calendar.DATE, -days);
-        return new Date(c.getTimeInMillis());
     }
 
 
